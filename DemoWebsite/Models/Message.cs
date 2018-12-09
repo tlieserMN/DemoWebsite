@@ -19,4 +19,10 @@ namespace DemoWebsite.Models
     {
         public List<User> Conversations { get; set; }
     }
+
+    public class ConversationModel
+    {
+        public List<Message> Messages { get; set; }
+        public int ReceiverID { get; set; }
+    }
 }
