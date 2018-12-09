@@ -18,19 +18,24 @@ namespace DemoWebsite.Controllers
         
         public ActionResult GetConversation(int id)
         {
-            List<Message> model = null;
+            List<Message> messages = null;
             if(id == 1)
             {
-                model = TEMPDATA.SALLYCONVERSATION;
+                messages = TEMPDATA.SALLYCONVERSATION;
             }
             else if(id == 2)
             {
-                model = TEMPDATA.JOHNCONVERSATION;
+                messages = TEMPDATA.JOHNCONVERSATION;
             }
             else if (id == 3)
             {
-                model = TEMPDATA.AUSTINCONVERSATION;
+                messages = TEMPDATA.AUSTINCONVERSATION;
             }
+            ConversationModel model = new ConversationModel
+            {
+                ReceiverID = id,
+                Messages = messages
+            };
             return View("Conversation", model);
         }
 
@@ -44,6 +49,35 @@ namespace DemoWebsite.Controllers
                 Body = body,
                 Sender = SessionVariables.CurrentUser
             });
+        }
+
+        [HttpPost]
+        public void AddPrivateMessage(string header, string body, int receiver_id)
+        {
+            List<Message> conversation = null;
+            if (receiver_id == 1)
+            {
+                conversation = TEMPDATA.SALLYCONVERSATION;
+            }
+            else if (receiver_id == 2)
+            {
+                conversation = TEMPDATA.JOHNCONVERSATION;
+            }
+            else if (receiver_id == 3)
+            {
+                conversation = TEMPDATA.AUSTINCONVERSATION;
+            }
+
+            if (conversation != null)
+            {
+                conversation.Add(new Message
+                {
+                    ID = 2,
+                    Header = header,
+                    Body = body,
+                    Sender = SessionVariables.CurrentUser
+                });
+            }
         }
     }
 }
