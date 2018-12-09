@@ -13,16 +13,16 @@ namespace DemoWebsite
             Messages = new List<Message> {new Message
                 {
                     ID = 1,
-                    Header = "First Header",
-                    Body = "This is the First body",
-                    Sender = "Thomas Lieser"
+                    Header = "Good Day",
+                    Body = "Hey guys, I hope you are all having a good day!!",
+                    Sender = "Sally Johnson"
                 },
                 new Message
                 {
                     ID = 2,
-                    Header = "Second Header",
-                    Body = "This is the see body",
-                    Sender = "Thomas Lieser"
+                    Header = "Job Promotion",
+                    Body = "Just got a job promotion to manager!!",
+                    Sender = "Austin Anderson"
                 }
                 }
         };
