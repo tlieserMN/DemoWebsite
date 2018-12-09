@@ -1,0 +1,15 @@
+﻿@model DemoWebsite.Models.User
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<div>
+    <label>First Name: @Model.FirstName  @Model.LastName</label>
+    <br />
+    <label>Email: @Model.Email</label>
+    <br />
+    <label>Birthday: @Model.Birthday</label>
+    <br />
+    <label>Age: @Model.Age</label>
+</div>

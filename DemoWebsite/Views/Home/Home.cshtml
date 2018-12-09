@@ -1,0 +1,46 @@
+﻿@model DemoWebsite.Models.HomeModel
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<div>
+    <div class="col-lg-3">
+        <input id="header" />
+        <textarea id="body"></textarea>
+        <button onclick="addNew()">Add message</button>
+    </div>
+    <div class="col-lg-6">
+        @foreach(DemoWebsite.Models.Message message in Model.Messages)
+        {
+            <h3>@message.Header</h3>
+            <h5>@message.Sender</h5>
+            <label readonly>@message.Body</label>
+            <br />
+            <label>-------------------------------------------------------</label>
+        }
+    </div>
+    <div class="col-lg-3">
+        third
+    </div>
+</div>
+
+@section scripts{
+    
+    <script>
+        function addNew() {
+            $.ajax({
+                url: "/Messages/AddMessage",
+                type: 'POST',
+                data: {
+                    header: $('#header').val(),
+                    body: $('#body').val()
+                },
+                success: function () {
+                    window.location.href = "/Home/Index";
+                }
+            });
+        }
+    </script>
+    
+    }
