@@ -1,0 +1,29 @@
+﻿@model DemoWebsite.Models.MessagesModel
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<div>
+    <div class="col-lg-3">
+        <h3>FRIENDS</h3>
+    </div>
+    <div class="col-lg-6">
+        @foreach (DemoWebsite.Models.User user in Model.Conversations)
+        {
+            <h3><a href="@Url.Action("GetConversation", "Messages", new { id = user.ID })">@user.FirstName  @user.LastName</a></h3>
+            <br />
+            <label>-------------------------------------------------------</label>
+        }
+    </div>
+    <div class="col-lg-3">
+        third
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+    </script>
+
+}
