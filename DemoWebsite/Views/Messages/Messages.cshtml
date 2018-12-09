@@ -1,6 +1,6 @@
 ﻿@model DemoWebsite.Models.MessagesModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Messages";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 
@@ -11,9 +11,13 @@
     <div class="col-lg-6">
         @foreach (DemoWebsite.Models.User user in Model.Conversations)
         {
-            <h3><a href="@Url.Action("GetConversation", "Messages", new { id = user.ID })">@user.FirstName  @user.LastName</a></h3>
-            <br />
-            <label>-------------------------------------------------------</label>
+            <a style="text-decoration:none" href="@Url.Action("GetConversation", "Messages", new { id = user.ID })">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @user.FirstName @user.LastName
+                </div>
+            </div>
+            </a>
         }
     </div>
     <div class="col-lg-3">

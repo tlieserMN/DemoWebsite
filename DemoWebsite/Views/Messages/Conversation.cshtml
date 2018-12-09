@@ -1,24 +1,36 @@
 ﻿@model DemoWebsite.Models.ConversationModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Messages";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 
-<div>
+<div style="height:100%">
     <div class="col-lg-3">
-        <input id="header" />
-        <textarea id="body"></textarea>
-        <button onclick="addNew()">Add message</button>
+        <div class="form-group">
+            <label for="header">Header</label>
+            <input type="text" class="form-control" id="header" placeholder="Header">
+        </div>
+        <div class="form-group">
+            <label for="body">Body</label>
+            <textarea class="form-control" id="body" placeholder="Message" style="resize:vertical"></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="addNew()">Add message</button>
     </div>
-    <div class="col-lg-6">
-        @foreach (DemoWebsite.Models.Message message in Model.Messages)
-        {
-            <h3>@message.Header</h3>
-            <h5>@message.Sender</h5>
-            <label readonly>@message.Body</label>
-            <br />
-            <label>-------------------------------------------------------</label>
-        }
+    <div class="col-lg-6" style="height:100%">
+        <div id="conversation_messages"style="height:100%; overflow:auto">
+            @foreach (DemoWebsite.Models.Message message in Model.Messages)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>@message.Header</h3>
+                        <h5>@message.Sender</h5>
+                    </div>
+                    <div class="panel-body">
+                        @message.Body
+                    </div>
+                </div>
+            }
+        </div>
     </div>
     <div class="col-lg-3">
         third
@@ -42,6 +54,10 @@
                 }
             });
         }
+
+        var element = document.getElementById("conversation_messages");
+        element.scrollTop = element.scrollHeight;
+
     </script>
 
 }
