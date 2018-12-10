@@ -8,6 +8,17 @@ namespace DemoWebsite
 {
     public static class TEMPDATA
     {
+        public static User LOGEDINUSER = new User
+        {
+            ID = 4,
+            FirstName = "Thomas",
+            LastName = "Lieser",
+            Email = "tlieserMN@gmail.com",
+            Age = 20,
+            Birthday = "1998-09-24",
+            AboutMe = "This is about Thomas Lieser"
+        };
+
         public static HomeModel HOME = new HomeModel
         {
             Messages = new List<Message> {new Message
@@ -66,7 +77,7 @@ namespace DemoWebsite
                     ID = 2,
                     Header = "Monday",
                     Body = "I am good how are you?",
-                    Sender = "Thomas Lieser"
+                    Sender = LOGEDINUSER.FirstName + " " + LOGEDINUSER.LastName
                 }
         };
 
@@ -84,7 +95,7 @@ namespace DemoWebsite
                     ID = 4,
                     Header = "school response",
                     Body = "Yes I did, do you want to meet tomorrow about it?",
-                    Sender = "Thomas Lieser"
+                    Sender = LOGEDINUSER.FirstName + " " + LOGEDINUSER.LastName
                 },
                 new Message
                 {
@@ -98,7 +109,7 @@ namespace DemoWebsite
                     ID = 6,
                     Header = "Project",
                     Body = "That works",
-                    Sender = "Thomas Lieser"
+                    Sender = LOGEDINUSER.FirstName + " " + LOGEDINUSER.LastName
                 }
         };
 
@@ -111,16 +122,6 @@ namespace DemoWebsite
                     Body = "Whats up?",
                     Sender = "Sally Johnson"
                 }
-        };
-
-        public static User LOGEDINUSER = new User
-        {
-            ID = 4,
-            FirstName = "Thomas",
-            LastName = "Lieser",
-            Email = "tlieserMN@gmail.com",
-            Age = 20,
-            Birthday = "9/24/1998"
         };
     }
 }

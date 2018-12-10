@@ -13,5 +13,16 @@ namespace DemoWebsite.Controllers
         {
             return View("Account", TEMPDATA.LOGEDINUSER);
         }
+
+        [HttpPost]
+        public void UpdateAccount(string aboutme, string firstname, string lastname, string email, string birthday, int age)
+        {
+            TEMPDATA.LOGEDINUSER.AboutMe = aboutme;
+            TEMPDATA.LOGEDINUSER.FirstName = firstname;
+            TEMPDATA.LOGEDINUSER.LastName = lastname;
+            TEMPDATA.LOGEDINUSER.Email = email;
+            TEMPDATA.LOGEDINUSER.Birthday = birthday;
+            TEMPDATA.LOGEDINUSER.Age = age;
+        }
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DemoWebsite.Models;
-using DemoWebsite.Globals;
 
 namespace DemoWebsite.Controllers
 {
@@ -47,7 +46,7 @@ namespace DemoWebsite.Controllers
                 ID = 2,
                 Header = header,
                 Body = body,
-                Sender = SessionVariables.CurrentUser
+                Sender = TEMPDATA.LOGEDINUSER.FirstName + " " + TEMPDATA.LOGEDINUSER.LastName
             });
         }
 
@@ -75,7 +74,7 @@ namespace DemoWebsite.Controllers
                     ID = 2,
                     Header = header,
                     Body = body,
-                    Sender = SessionVariables.CurrentUser
+                    Sender = TEMPDATA.LOGEDINUSER.FirstName + " " + TEMPDATA.LOGEDINUSER.LastName
                 });
             }
         }

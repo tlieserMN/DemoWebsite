@@ -4,12 +4,61 @@
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 
-<div>
-    <label>First Name: @Model.FirstName  @Model.LastName</label>
-    <br />
-    <label>Email: @Model.Email</label>
-    <br />
-    <label>Birthday: @Model.Birthday</label>
-    <br />
-    <label>Age: @Model.Age</label>
+<div style="margin:auto; width:60%">
+    <div class="alert alert-success" id="success" style="display:none">
+        Successfully updated profile
+    </div>
+    <div style="margin:auto; width:40%">
+        <img src="../../Images/profilepic.jpg" style="width:100%; border-radius:50%">
+    </div>
+    <div class="form-group" style="width:100%">
+        <label for="body">About Me</label>
+        <textarea class="form-control" id="aboutme" style="resize:vertical">@Model.AboutMe</textarea>
+    </div>
+    <div class="form-group" style="width:40%">
+        <label for="header">First Name</label>
+        <input type="text" class="form-control" id="firstname" placeholder="Header" value="@Model.FirstName">
+    </div>
+    <div class="form-group" style="width:40%">
+        <label for="header">Last Name</label>
+        <input type="text" class="form-control" id="lastname" placeholder="Header" value="@Model.LastName">
+    </div>
+    <div class="form-group" style="width:40%">
+        <label for="header">Email</label>
+        <input type="text" class="form-control" id="email" placeholder="Header" value="@Model.Email">
+    </div>
+    <div class="form-group" style="width:20%">
+        <label for="header">Birthday</label>
+        <input type="date" class="form-control" id="birthday" placeholder="Header" value="@Model.Birthday">
+    </div>
+    <div class="form-group" style="width:10%">
+        <label for="header">Age</label>
+        <input type="text" class="form-control" id="age" placeholder="Header" value="@Model.Age">
+    </div>
+    <button class="btn btn-primary" onclick="updateAccount()">Update</button>
 </div>
+
+@section scripts{
+
+    <script>
+        function updateAccount() {
+            $.ajax({
+                url: "/Account/UpdateAccount",
+                type: 'POST',
+                data: {
+                    aboutme: $('#aboutme').val(),
+                    firstname: $('#firstname').val(),
+                    lastname: $('#lastname').val(),
+                    email: $('#email').val(),
+                    birthday: $('#birthday').val(),
+                    age: $('#age').val()
+                },
+                success: function () {
+                    //window.location.href = "/Account/Account";
+                    $('#success').show(0).delay(5000).hide(0);
+                }
+            });
+        }
+    </script>
+
+}
