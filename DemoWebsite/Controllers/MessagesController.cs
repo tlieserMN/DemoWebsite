@@ -4,14 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DemoWebsite.Models;
+using DemoWebsite.DbContext;
 
 namespace DemoWebsite.Controllers
 {
     public class MessagesController : Controller
     {
+        private MessagesDBContext db = new MessagesDBContext();
         // GET: Messages
         public ActionResult Messages()
         {
+            //List<Test> test = db.Tests.SqlQuery("SELECT * FROM dbo.thomas").ToList();
+            using (NamesDbContext db2 = new NamesDbContext())
+            {
+                Name name = new Name
+                {
+                    F_NAME = "Thomas",
+                    L_NAME = "Lieser"
+                };
+                db2.Names.Add(name);
+                db2.SaveChanges();
+            }
             return View("Messages", TEMPDATA.MESSAGES);
         }
         

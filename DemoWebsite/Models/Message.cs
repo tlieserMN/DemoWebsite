@@ -25,4 +25,10 @@ namespace DemoWebsite.Models
         public List<Message> Messages { get; set; }
         public int ReceiverID { get; set; }
     }
+
+    public class Test
+    {
+        [Key]
+        public int ID { get; set; }
+    }
 }
