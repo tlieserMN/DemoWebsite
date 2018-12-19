@@ -158,17 +158,21 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="DbContext\MessagesDBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Globals\SessionVariables.cs" />
+    <Compile Include="DbContext\HomeDbContext.cs" />
+    <Compile Include="Home.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="DbContext\MessagesDbContext.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Name.cs" />
-    <Compile Include="NamesDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TEMPDATA.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="DbContext\UsersDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

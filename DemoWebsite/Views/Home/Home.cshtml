@@ -1,4 +1,4 @@
-﻿@model DemoWebsite.Models.HomeModel
+﻿@model List<Message>
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/MainLayout.cshtml";
@@ -18,7 +18,7 @@
     </div>
     <div class="col-lg-6" style="height:100%">
         <div style="height:100%; overflow:auto">
-            @foreach (DemoWebsite.Models.Message message in Model.Messages)
+            @foreach (DemoWebsite.Message message in Model)
             {
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -42,7 +42,7 @@
     <script>
         function addNew() {
             $.ajax({
-                url: "/Messages/AddMessage",
+                url: "/Home/AddHomeMessage",
                 type: 'POST',
                 data: {
                     header: $('#header').val(),

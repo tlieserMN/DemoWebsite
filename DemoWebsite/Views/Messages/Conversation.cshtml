@@ -1,4 +1,4 @@
-﻿@model DemoWebsite.Models.ConversationModel
+﻿@model Conversation
 @{
     ViewBag.Title = "Messages";
     Layout = "~/Views/Shared/MainLayout.cshtml";
@@ -18,7 +18,7 @@
     </div>
     <div class="col-lg-6" style="height:100%">
         <div id="conversation_messages"style="height:100%; overflow:auto">
-            @foreach (DemoWebsite.Models.Message message in Model.Messages)
+            @foreach (DemoWebsite.Message message in Model.Messages)
             {
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -44,10 +44,10 @@
                 data: {
                     header: $('#header').val(),
                     body: $('#body').val(),
-                    receiver_id: @Model.ReceiverID
+                    friendid: @Model.FriendID
                 },
                 success: function () {
-                    window.location.href = "/Messages/GetConversation/@Model.ReceiverID";
+                    window.location.href = "/Messages/GetConversation/@Model.FriendID";
                 }
             });
         }

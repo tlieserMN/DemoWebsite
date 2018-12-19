@@ -1,19 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
-using DemoWebsite.Models;
-
-namespace DemoWebsite.DbContext
+namespace DemoWebsite
 {
-    public class MessagesDBContext : System.Data.Entity.DbContext
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
+    public partial class MessagesDbContext : DbContext
     {
-        public MessagesDBContext()
+        public MessagesDbContext()
+            : base("name=DemoDatabase")
         {
-            this.Database.Connection.ConnectionString = "Server=localhost\\SQLEXPRESS;Database=dbo.test;Trusted_Connection=True";
         }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<Test> Tests { get; set; }
+
+        public virtual DbSet<Friend> Conversations { get; set; }
+        public virtual DbSet<Message> ConversationMessages { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Message>()
+                .Property(e => e.Header)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Message>()
+                .Property(e => e.Body)
+                .IsUnicode(false);
+        }
     }
 }
