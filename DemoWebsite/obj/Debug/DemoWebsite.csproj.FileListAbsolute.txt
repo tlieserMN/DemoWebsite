@@ -180,3 +180,7 @@ C:\Users\ThomasLieser\Downloads\DemoWebsite-CreatePages\DemoWebsite-CreatePages\
 C:\Users\ThomasLieser\Downloads\DemoWebsite-CreatePages\DemoWebsite-CreatePages\DemoWebsite\obj\Debug\DemoWebsite.csproj.CopyComplete
 C:\Users\ThomasLieser\Downloads\DemoWebsite-CreatePages\DemoWebsite-CreatePages\DemoWebsite\obj\Debug\DemoWebsite.dll
 C:\Users\ThomasLieser\Downloads\DemoWebsite-CreatePages\DemoWebsite-CreatePages\DemoWebsite\obj\Debug\DemoWebsite.pdb
+C:\WEB PROJECTS\DemoWebsite\DemoWebsite\bin\EntityFramework.dll
+C:\WEB PROJECTS\DemoWebsite\DemoWebsite\bin\EntityFramework.SqlServer.dll
+C:\WEB PROJECTS\DemoWebsite\DemoWebsite\bin\EntityFramework.xml
+C:\WEB PROJECTS\DemoWebsite\DemoWebsite\bin\EntityFramework.SqlServer.xml

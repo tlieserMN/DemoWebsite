@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DemoWebsite.Globals;
 using DemoWebsite.Models;
 
 namespace DemoWebsite.Controllers
@@ -12,70 +14,53 @@ namespace DemoWebsite.Controllers
         // GET: Messages
         public ActionResult Messages()
         {
-            return View("Messages", TEMPDATA.MESSAGES);
+            List<Friend> friends;
+            using (MessagesDbContext dbContext = new MessagesDbContext())
+            {
+                friends = dbContext.Conversations.SqlQuery("EXEC GetConversationsWithFriends @UserID", new SqlParameter("UserID", SessionVariables.CurrentUserID)).ToList();
+            }
+            return View("Messages", friends);
         }
-        
+
         public ActionResult GetConversation(int id)
         {
-            List<Message> messages = null;
-            if(id == 1)
+            List<Message> messages;
+            using (MessagesDbContext dbContext = new MessagesDbContext())
             {
-                messages = TEMPDATA.SALLYCONVERSATION;
+                messages = dbContext.ConversationMessages.SqlQuery("EXEC GetMessagesInConversation @UserID, @FriendID", 
+                    new SqlParameter("UserID", SessionVariables.CurrentUserID), 
+                    new SqlParameter("FriendID", id)).ToList();
             }
-            else if(id == 2)
+
+            Conversation con = new Conversation
             {
-                messages = TEMPDATA.JOHNCONVERSATION;
-            }
-            else if (id == 3)
-            {
-                messages = TEMPDATA.AUSTINCONVERSATION;
-            }
-            ConversationModel model = new ConversationModel
-            {
-                ReceiverID = id,
-                Messages = messages
+                Messages = messages,
+                FriendID = id
             };
-            return View("Conversation", model);
+            return View("Conversation", con);
         }
 
-        [HttpPost]
-        public void AddMessage(string header, string body)
-        {
-            TEMPDATA.HOME.Messages.Insert(0, new Message
-            {
-                ID = 2,
-                Header = header,
-                Body = body,
-                Sender = TEMPDATA.LOGEDINUSER.FirstName + " " + TEMPDATA.LOGEDINUSER.LastName
-            });
-        }
+        //[HttpPost]
+        //public void AddMessage(string header, string body)
+        //{
+        //    TEMPDATA.HOME.Messages.Insert(0, new Message
+        //    {
+        //        ID = 2,
+        //        Header = header,
+        //        Body = body,
+        //        Sender = TEMPDATA.LOGEDINUSER.FirstName + " " + TEMPDATA.LOGEDINUSER.LastName
+        //    });
+        //}
 
         [HttpPost]
-        public void AddPrivateMessage(string header, string body, int receiver_id)
+        public void AddPrivateMessage(string header, string body, int friendid)
         {
-            List<Message> conversation = null;
-            if (receiver_id == 1)
+            using (MessagesDbContext dbContext = new MessagesDbContext())
             {
-                conversation = TEMPDATA.SALLYCONVERSATION;
-            }
-            else if (receiver_id == 2)
-            {
-                conversation = TEMPDATA.JOHNCONVERSATION;
-            }
-            else if (receiver_id == 3)
-            {
-                conversation = TEMPDATA.AUSTINCONVERSATION;
-            }
-
-            if (conversation != null)
-            {
-                conversation.Add(new Message
-                {
-                    ID = 2,
-                    Header = header,
-                    Body = body,
-                    Sender = TEMPDATA.LOGEDINUSER.FirstName + " " + TEMPDATA.LOGEDINUSER.LastName
-                });
+                int result = dbContext.Database.ExecuteSqlCommand("EXEC AddMessage @UserID, @Header, @Body, @ReceiverID", 
+                    new SqlParameter("UserID", SessionVariables.CurrentUserID), 
+                    new SqlParameter("Header", header), new SqlParameter("Body", body), 
+                    new SqlParameter("ReceiverID", friendid));
             }
         }
     }

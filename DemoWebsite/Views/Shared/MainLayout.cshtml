@@ -14,12 +14,13 @@
 </head>
 <body style="height:100%">
     <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a class="nav-link" href="@Url.Action("Index", "Home")">Home</a></li>
                 <li><a class="nav-link" href="@Url.Action("Messages", "Messages")">Messages</a></li>
                 <li><a class="nav-link" href="@Url.Action("Account", "Account")">Account</a></li>
             </ul>
+            <span class="navbar-text" style="float:right">@DemoWebsite.Globals.SessionVariables.CurrentUserName</span>
         </div>
     </nav>
     <div class="container" style="height:80%">

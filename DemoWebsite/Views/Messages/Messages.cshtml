@@ -1,4 +1,4 @@
-﻿@model DemoWebsite.Models.MessagesModel
+﻿@model List<Friend>
 @{
     ViewBag.Title = "Messages";
     Layout = "~/Views/Shared/MainLayout.cshtml";
@@ -9,12 +9,12 @@
         <h3>CONVERSATIONS</h3>
     </div>
     <div class="col-lg-6">
-        @foreach (DemoWebsite.Models.User user in Model.Conversations)
+        @foreach (DemoWebsite.Friend user in Model)
         {
-            <a style="text-decoration:none" href="@Url.Action("GetConversation", "Messages", new { id = user.ID })">
+            <a style="text-decoration:none" href="@Url.Action("GetConversation", "Messages", new { id = user.UserID })">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    @user.FirstName @user.LastName
+                    @user.Sender
                 </div>
             </div>
             </a>
